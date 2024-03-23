@@ -34,8 +34,8 @@ const useStyles = makeStyles(theme => ({
 	root: {
 		width: "100vw",
 		height: "100vh",
-		//background: "linear-gradient(to right, #5ccb5f , #009929 , #006414)",
-		backgroundImage: "url(https://www.ohub.com.br/ideias/wp-content/uploads/2020/09/como-fazer-bpo-financeiro.jpg)",
+		background: "linear-gradient(to right, #5ccb5f , #009929 , #006414)",
+		//backgroundImage: "url(https://www.ohub.com.br/ideias/wp-content/uploads/2020/09/como-fazer-bpo-financeiro.jpg)",
 		backgroundRepeat: "no-repeat",
 		backgroundSize: "100% 100%",
 		backgroundPosition: "center",
