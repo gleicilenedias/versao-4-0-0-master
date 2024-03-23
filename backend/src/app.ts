@@ -17,6 +17,8 @@ Sentry.init({ dsn: process.env.SENTRY_DSN });
 
 const app = express();
 
+
+
 app.set("queues", {
   messageQueue,
   sendScheduledMessages
@@ -29,6 +31,10 @@ app.use(
   })
 );
 app.use(cookieParser());
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.json({ limit: '5mb' }));
+
 app.use(express.json());
 app.use(Sentry.Handlers.requestHandler());
 app.use("/public", express.static(uploadConfig.directory));
