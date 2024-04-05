@@ -1500,6 +1500,27 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
       ],
     });
 
+      // detectar ultima opção do chatbot e finaliza-lo
+    if (queueOptions.length === 0) {
+      const textMessage = {
+        text: formatBody(`\u200e${currentOption.message}`, ticket.contact),
+      };
+
+      const sendMsg = await wbot.sendMessage(
+        `${ticket.contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`,
+        textMessage
+      );
+
+      await verifyMessage(sendMsg, ticket, ticket.contact);
+
+      await ticket.update({
+        queueOptionId: null,
+        chatbot: false,
+      });
+      //console.log("Fim do chatbot. Última opção alcançada.");
+      return;
+    }
+
     if (queueOptions.length > -1) {
 
       const companyId = ticket.companyId;
